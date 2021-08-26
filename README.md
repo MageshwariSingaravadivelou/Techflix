@@ -1,7 +1,5 @@
-## SocialMediaDataAnalytics-Coursera
+## TECHFILX - MOVIE RECOMMENDER SYSTEM
 ```
-Week - 1: Introduction to Data analytics
-Week - 2: Collecting and Extracting Social Media Data
-Week - 3: Data Analysis, Visualization and Exploration
-Week - 4: Case Studies
 ```
+- Input: User Preference (API request)
+- Output: 3 Movies
