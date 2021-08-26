@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## TECHFLIX - MOVIE RECOMMENDER SYSTEM
 
 You can use the [editor on GitHub](https://github.com/MageshwariSingaravadivelou/Techflix/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
