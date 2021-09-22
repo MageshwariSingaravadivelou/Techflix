@@ -1,10 +1,11 @@
 import tmdb_request as tmdb
 import movie_recommendation
 from flask import Flask, render_template, request
+from flask_cors import CORS
 
 
 app = Flask(__name__)
-
+CORS(app) # needed for cross-domain requests, allow everything by default
 
 @app.route('/', methods=['GET'])
 def index():

@@ -9,6 +9,7 @@
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src='https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js'></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <head>   
   <style>
@@ -97,7 +98,7 @@ $(function () {
     console.log(keyword)   
     {$.ajax({
       type: "GET",
-      url: "../recommend_movie",
+      url: "http://127.0.0.1:5000/recommend_movie",
       dataType: 'json',
       data: {
           quest: keyword
@@ -118,7 +119,7 @@ $(document).on('click','#submit-btn',function(e){
     
     {$.ajax({
       type: "GET",
-      url: "../get_movie_details",
+      url: "http://127.0.0.1:5000/get_movie_details",
       dataType: 'json',
       data: {
           quest: keyword
