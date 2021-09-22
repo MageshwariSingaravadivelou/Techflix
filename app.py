@@ -6,18 +6,18 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
-@app.route('/', methods=['get'])
+@app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
 
-@app.route('/', methods=['post'])
+@app.route('/', methods=['POST'])
 def get_input():
     form = request.form
     return render_template('index.html', value=form)
 
 
-@app.route('/get_movie_details',methods=['get']) 
+@app.route('/get_movie_details',methods=['GET']) 
 def get_movie_details():
     quest=request.args.get('quest')
     print(quest)
@@ -26,7 +26,7 @@ def get_movie_details():
     return tables
 
 
-@app.route('/recommend_movie',methods=['get']) 
+@app.route('/recommend_movie',methods=['GET']) 
 def recommend_movie():
     quest=request.args.get('quest')
     print(quest)
