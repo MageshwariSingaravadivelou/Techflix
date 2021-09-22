@@ -1,0 +1,213 @@
+<meta charset="utf-8">
+<title>Cine Buzz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="../static/css/styles.css">
+<link type="text/css" rel="stylesheet" href="../static/css/magicscroll.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="../static/js/magicscroll.js"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<head>   
+  <style>
+    .MagicScroll[data-mode="carousel"] {
+      background-color: #C1C8E4;
+      opacity: 1.0;
+    }
+
+    p, h2 {
+      text-align: center;
+    }
+
+    table, th, td 
+    { 
+        font: 17px verdana;
+        border: solid 1px #DDD;
+        border-collapse: collapse;
+        padding: 2px 3px;
+        text-align: center;
+        margin: 10px 0;
+    }
+    th {
+        font-weight:bold;
+    }
+
+</style>
+
+</head>
+<html>
+<body>
+    <div class="container">
+      <div class="header">
+        <div class="topnav">
+          <h1 class="logo">CINE BUZZ</h1>
+          <img src="../static/img/popcorn-1.gif" alt="Pop Out!!" width="80px" height="80px" style="padding-left: 10px;">
+        
+          <a class="active" href="index.html">Home</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+
+        </div>     
+		  </div>
+        <div class="MagicScroll" data-options="autoplay: 1500; step: 1; mode: carousel; height: 275;">
+          
+            <img src="../static/img/adventure-p.jpg" />
+            <img src="../static/img/animation.jfif" />
+            <img src="../static/img/comedy.jfif" />
+            <img src="../static/img/crime.jfif" />
+            <img src="../static/img/drama.jfif" />
+            <img src="../static/img/family.jpg" />
+            <img src="../static/img/fantasy-c.jpg" />
+            <img src="../static/img/history-c.jpg" />
+            <img src="../static/img/music.jfif" />
+            <img src="../static/img/mystery.jpg" />
+            <img src="../static/img/romance.jfif" />
+            <img src="../static/img/sci-fi.jfif" />
+            
+        </div>
+     <br>
+     <div class="topnavRadio">
+        <div>
+          <input type="radio" id="recommend" name="movie" value="recommend">
+          <label for="recommend">Recommend Movies</label>
+      
+          <input type="radio" id="search" name="movie" value="search">
+          <label for="search">Search Movie Details</label>
+        </div>
+        <div class="search-container">
+          <form action="{{ url_for('/recommend_movie/recommend_movie') }}" method="GET">
+            <input id="searchMovie" type="text" placeholder="Movie Name..." size="50" name="searchmovie">
+            <button type="submit" name= "submit" id="submit-btn" onclick="CreateTable();"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+$(function () {
+        $("input[name='movie']").click(function () {
+            if ($("#recommend").is(":checked")) {
+                $(document).on('click','#submit-btn',function(e){
+    e.preventDefault();
+    var keyword=$("input[name='searchmovie']").val();
+    console.log(keyword)   
+    {$.ajax({
+      type: "GET",
+      url: "/recommend_movie",
+      dataType: 'json',
+      data: {
+          quest: keyword
+      },
+      cache: false,
+      success: function(response) {
+        console.log(response) 
+        CreateRecommendTable(response);
+  }})
+}
+});
+            } else {
+                //Bind keypress event to textbox
+$(document).on('click','#submit-btn',function(e){
+    e.preventDefault();
+    var keyword=$("input[name='searchmovie']").val();
+    console.log(keyword)
+    
+    {$.ajax({
+      type: "GET",
+      url: "/get_movie_details",
+      dataType: 'json',
+      data: {
+          quest: keyword
+      },
+      cache: false,
+      success: function(response) { 
+         var data=response;
+         CreateTable(data);
+  }})
+}
+});
+            }
+        });
+    });
+
+
+function CreateTable(data) {
+
+// CREATE DYNAMIC TABLE.
+var table = document.createElement('table');
+
+var arrHead = new Array();
+arrHead = ['Movie Name', 'Overview', 'Release Date', 'Revenue', 'Language', 'Vote Average', 'Vote Count'];
+
+var arrValue = new Array();
+arrValue.push([data['title'], data['overview'], data['release_date'], data['revenue'], data['official_language'], data['vote_average'], data['vote_count']]);
+
+var tr = table.insertRow(-1);
+
+for (var h = 0; h < arrHead.length; h++) {
+    var th = document.createElement('th');              // TABLE HEADER.
+    th.innerHTML = arrHead[h];
+    tr.appendChild(th);
+}
+
+for (var c = 0; c <= arrValue.length - 1; c++) {
+    tr = table.insertRow(-1);
+
+    for (var j = 0; j < arrHead.length; j++) {
+        var td = document.createElement('td');          // TABLE DEFINITION.
+        td = tr.insertCell(-1);
+        td.innerHTML = arrValue[c][j];                  // ADD VALUES TO EACH CELL.
+    }
+}
+
+// FINALLY ADD THE NEWLY CREATED TABLE TO THE BODY.
+document.body.appendChild(table);
+}
+
+function CreateRecommendTable(response) {
+
+// CREATE DYNAMIC TABLE.
+var table = document.createElement('table');
+
+var arrHead = new Array();
+arrHead = ['Movie Name', 'Tagline', 'Genres', 'Release Date'];
+
+var arrValue = new Array();
+
+values = Object.values(response);
+console.log(values[1][0][0])
+
+for (let i of values[1]){
+  console.log(i)
+  arrValue.push([i[0], i[1], i[2], i[3]])
+}
+console.log(arrValue)
+
+var tr = table.insertRow(-1);
+
+for (var h = 0; h < arrHead.length; h++) {
+    var th = document.createElement('th');              // TABLE HEADER.
+    th.innerHTML = arrHead[h];
+    tr.appendChild(th);
+}
+
+for (var c = 0; c <= arrValue.length - 1; c++) {
+    tr = table.insertRow(-1);
+
+    for (var j = 0; j < arrHead.length; j++) {
+        var td = document.createElement('td');          // TABLE DEFINITION.
+        td = tr.insertCell(-1);
+        td.innerHTML = arrValue[c][j];                  // ADD VALUES TO EACH CELL.
+    }
+}
+
+// FINALLY ADD THE NEWLY CREATED TABLE TO THE BODY.
+document.body.appendChild(table);
+}
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!--<script src="static/js/main.js"></script>-->
