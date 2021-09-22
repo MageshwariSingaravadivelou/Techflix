@@ -76,7 +76,7 @@
           <label for="search">Search Movie Details</label>
         </div>
         <div class="search-container">
-          <form action="{{ url_for('recommend_movie/recommend_movie') }}" method="GET">
+          <form action="{{ url_for('../recommend_movie/recommend_movie') }}" method="GET">
             <input id="searchMovie" type="text" placeholder="Movie Name..." size="50" name="searchmovie">
             <button type="submit" name= "submit" id="submit-btn" onclick="CreateTable();"><i class="fa fa-search"></i></button>
           </form>
