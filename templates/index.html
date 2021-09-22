@@ -76,7 +76,7 @@
           <label for="search">Search Movie Details</label>
         </div>
         <div class="search-container">
-          <form>
+          <form action="{{ url_for('recommend_movie') }}" method="GET">
             <input id="searchMovie" type="text" placeholder="Movie Name..." size="50" name="searchmovie">
             <button type="submit" name= "submit" id="submit-btn" onclick="CreateTable();"><i class="fa fa-search"></i></button>
           </form>
@@ -96,7 +96,7 @@ $(function () {
     console.log(keyword)   
     {$.ajax({
       type: "GET",
-      url: "../recommend_movie",
+      url: "/recommend_movie",
       dataType: 'json',
       data: {
           quest: keyword
@@ -117,7 +117,7 @@ $(document).on('click','#submit-btn',function(e){
     
     {$.ajax({
       type: "GET",
-      url: "../get_movie_details",
+      url: "/get_movie_details",
       dataType: 'json',
       data: {
           quest: keyword
