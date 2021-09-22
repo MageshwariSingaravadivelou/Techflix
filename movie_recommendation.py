@@ -2,7 +2,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
 
-eng_movies = pd.read_excel(r'model/eng_movies.xlsx')
+eng_movies = pd.read_excel(r'./model/eng_movies.xlsx')
 
 count_vectorizer = CountVectorizer(stop_words="english")
 count_matrix = count_vectorizer.fit_transform(eng_movies["soup"])
