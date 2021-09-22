@@ -1,22 +1,15 @@
-## TECHFILX - MOVIE RECOMMENDER SYSTEM
-### Agenda:
-- Objective
-- Methods Used
-- Workflow
-- Conclusion
+## TECHFLIX - MOVIE RECOMMENDER SYSTEM
 
 ### _Objective_:
 - To build a recommender system which accepts the user preferences through an API and gives out three movie recommendations
 - Note: Movies should be only films & Feature films in English language
 
 ### _Methods Used_:
-1. **Web Scraping**:
+### 1. **Web Scraping**:
 - _Sources Considered_: TMDB, IMDb, Box Office Mojo
 - _Data Collected_: Top rated English movies are considered
 - _Scripting Language_: Python
-- _Python Packages used_: 
-1. Scraping: Beautiful Soup, Requests and Selenium
-2. File Handling: Pandas
+- _Python Packages used_:- **Scraping**: Beautiful Soup, Requests and Selenium. **File Handling**: Pandas
 - _API_: TMDB API to fetch the movie data
 
 How to create the TMDB API?
@@ -35,11 +28,8 @@ pip install selenium
 pip install beautifulsoup4
 ```
 
-2. **Model Development**:
-
-
-3. **Model Evaluation**:
-
+### 2. **Model Development**:
+_Content Based Recommendation Model_
 
 ### _Workflow_:
 
@@ -47,6 +37,3 @@ pip install beautifulsoup4
 
 - Input: User Preference (API request)
 - Output: 3 Movies
-
-```
-```
