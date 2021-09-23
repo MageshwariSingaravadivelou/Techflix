@@ -4,3 +4,4 @@ sklearn
 pandas
 scipy
 CORS
+openpyxl
