@@ -5,3 +5,4 @@ pandas
 scipy
 CORS
 openpyxl
+flask_cors
