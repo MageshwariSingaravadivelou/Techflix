@@ -46,7 +46,7 @@ We will use the Cosine Similarity from Sklearn, as the metric to compute the sim
 
 ### _How to Use_:
 - Select the Radio button as per the User wish 
-- Give any of the movies name from the list provided in the [URL]()
+- Give any of the movies name from the list provided in the [URL](https://github.com/MageshwariSingaravadivelou/Techflix/blob/main/data/Movies_list.xlsx)
 - Click on the Search icon
 
 Note:
@@ -55,3 +55,7 @@ Note:
 
 - Input: 1 Movie name
 - Output: 3 Movies
+
+### _Author_:
+- Mageshwari Singaravadivelou
+- P. Saimounika
