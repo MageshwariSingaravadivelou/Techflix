@@ -12,11 +12,13 @@ cosine_sim2 = cosine_similarity(count_matrix, count_matrix)
 print(cosine_sim2.shape)
 
 eng_movies = eng_movies.reset_index()
-indices = pd.Series(eng_movies.index, index=eng_movies["title"]).drop_duplicates()
+eng_movies['title_'] = eng_movies['title'].str.lower()
+indices = pd.Series(eng_movies.index, index=eng_movies["title_"]).drop_duplicates()
 
 def get_recommendations(title):
     cosine_sim = cosine_sim2
-    idx = indices[title]
+    title_ = title.lower()
+    idx = indices[title_]
     similarity_scores = list(enumerate(cosine_sim[idx]))
     similarity_scores= sorted(similarity_scores, key=lambda x: x[1], reverse=True)
     similarity_scores= similarity_scores[1:4]
