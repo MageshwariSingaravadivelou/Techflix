@@ -98,7 +98,7 @@ $(function () {
     console.log(keyword)   
     {$.ajax({
       type: "GET",
-      url: "http://0.0.0.0:5000/recommend_movie",
+      url: "https://cinebuzz.herokuapp.com/recommend_movie",
       dataType: 'json',
       data: {
           quest: keyword
@@ -119,7 +119,7 @@ $(document).on('click','#submit-btn',function(e){
     
     {$.ajax({
       type: "GET",
-      url: "http://0.0.0.0:5000/get_movie_details",
+      url: "https://cinebuzz.herokuapp.com/get_movie_details",
       dataType: 'json',
       data: {
           quest: keyword
