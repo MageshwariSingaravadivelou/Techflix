@@ -67,7 +67,7 @@ padding: 15px;
 
 .topnav {
   overflow: hidden;
-  background-color: #8860D0;
+  background-color:gray;
   width: 100%;
   position: relative;
 }
@@ -96,16 +96,18 @@ padding: 15px;
 
 .topnav .search-container {
   float: right;
-  margin-top: 10px;
+  margin-top: 5px;
+  border-color: lightgray;
+
 }
 
 .topnav input[type=text] {
   padding: 6px;
   height: 37px;
   padding: 7px 10px 7px;
-  margin-top: 8px;
+  margin-top: 6px;
   font-size: 17px;
-  border: none;
+  border-color: lightgray;
   cursor: pointer;
 }
 
@@ -114,13 +116,13 @@ padding: 15px;
   align-items: center;
   padding: 7px 10px 7px;
   height: 37px;
-  margin-top: 8px;
+  margin-top: 2px;
   margin-right: 16px;
   margin-left: 5px;
   background-color: white;
-  color: #8860D0;
+  color: grey;
   font-size: 17px;
-  border: none;
+  border-color: lightgray;
   cursor: pointer;
 }
 
@@ -138,7 +140,7 @@ padding: 15px;
     text-align: left;
     width: 100%;
     margin: 0;
-    padding: 14px;
+    
   }
   .topnav input[type=text] {
     border: 0px solid #C1C8E4;  
@@ -174,14 +176,14 @@ padding: 15px;
 }
 
 label {
-  color: White;
+  color: grey;
   font-size:17px;
   font-family:verdana;
 }
 
 input[type="radio"] {  
   display: inline-block;
-  width: 45px;
+  width: 50px;
 }
 
 table {
@@ -189,34 +191,32 @@ table {
 }
 
 .topnavRadio {
-  padding-top: 30px;
+  padding-top: 40px;
   display: inline-flex;
 }
 
 .topnavRadio .search-container {
   float: right;
-  padding-left: 80px;
+  padding-left: 180px;
+  border-color: lightgray;
 }
 
 .topnavRadio .search-container button {
-  float: right;
   align-items: center;
   padding: 7px 10px 7px;
   height: 37px;
-  margin-right: 16px;
   margin-left: 5px;
   background-color: white;
-  color: #8860D0;
+  color: grey;
   font-size: 17px;
-  border: none;
+  border-color: lightgray;
   cursor: pointer;
 }
 
 .topnavRadio input[type=text] {
-  padding: 6px;
   height: 37px;
-  padding: 7px 10px 7px;
+  padding: 6px 10px 6px;
   font-size: 17px;
-  border: none;
+  border-color: lightgray;
   cursor: pointer;
 }

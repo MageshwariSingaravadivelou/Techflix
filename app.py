@@ -8,8 +8,12 @@ app = Flask(__name__)
 CORS(app) # needed for cross-domain requests, allow everything by default
 
 @app.route('/', methods=['GET'])
-def index():
-    return render_template('index.html')
+def home():
+    if request.method == "GET":
+        movies = ["Coco", "Iron Man", "Iron Man 2", "Iron Man 3", "Inception", "Black Beauty",
+                     "Black Widow"]
+
+    return render_template('index.html', movies=movies)
 
 
 @app.route('/', methods=['POST'])

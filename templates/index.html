@@ -11,10 +11,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+
 <head>   
   <style>
     .MagicScroll[data-mode="carousel"] {
-      background-color: #C1C8E4;
+      background-color: lightgray;
       opacity: 1.0;
     }
 
@@ -78,8 +79,9 @@
         </div>
         <div class="search-container">
           <form>
-            <input id="searchMovie" type="text" placeholder="Movie Name..." size="50" name="searchmovie">
+            <input id="searchMovie" type="text" placeholder="Movie Name..." size="30" name="searchmovie" disabled="disabled">
             <button type="submit" name= "submit" id="submit-btn" onclick="CreateTable();"><i class="fa fa-search"></i></button>
+            <button type="clear" name= "clear" id="clear-btn" onclick="ClearContent();">Clear</button>
           </form>
         </div>
       </div>
@@ -88,9 +90,16 @@
 </html>
 
 <script>
+
+function ClearContent() {
+  location.reload();
+}
+
 $(function () {
         $("input[name='movie']").click(function () {
             if ($("#recommend").is(":checked")) {
+              $("#searchMovie").removeAttr("disabled");
+              $("#searchMovie").focus();
                 $(document).on('click','#submit-btn',function(e){
     e.preventDefault();
     var keyword=$("input[name='searchmovie']").val();
@@ -110,9 +119,11 @@ $(function () {
 }
 });
             } else {
+              $("#searchMovie").removeAttr("disabled");
+              $("#searchMovie").focus();
                 //Bind keypress event to textbox
 $(document).on('click','#submit-btn',function(e){
-    e.preventDefault();
+  e.preventDefault();
     var keyword=$("input[name='searchmovie']").val();
     console.log(keyword)
     
@@ -133,6 +144,7 @@ $(document).on('click','#submit-btn',function(e){
             }
         });
     });
+
 
 
 function CreateTable(data) {
