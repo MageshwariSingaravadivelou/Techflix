@@ -48,6 +48,10 @@ def get_recommendations(title):
 
 
     movies_indices = [ind[0] for ind in similarity_scores]
+
+    # remove the input movie name from the list
+    q_movies[q_movies["title"].str.contains(title)==False]
+
     movies = q_movies["title"].iloc[movies_indices]
     release_date = q_movies['release_date'].iloc[movies_indices]
     genres = q_movies['genres_'].iloc[movies_indices]

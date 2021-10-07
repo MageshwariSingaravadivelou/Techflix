@@ -1,5 +1,6 @@
 import tmdb_request as tmdb
 import movie_recommendation
+import pandas as pd
 from flask import Flask, render_template, request
 from flask_cors import CORS
 
@@ -10,8 +11,8 @@ CORS(app) # needed for cross-domain requests, allow everything by default
 @app.route('/', methods=['GET'])
 def home():
     if request.method == "GET":
-        movies = ["Coco", "Iron Man", "Iron Man 2", "Iron Man 3", "Inception", "Black Beauty",
-                     "Black Widow"]
+        eng_movies = pd.read_excel(r'./model/eng_movies.xlsx')
+        movies=eng_movies['title'].to_list()
 
     return render_template('index.html', movies=movies)
 
@@ -36,5 +37,5 @@ def recommend_movie():
     quest=request.args.get('quest')
     tables = movie_recommendation.get_recommendations(quest)
     print(tables)
-    
+
     return tables.to_json(orient='split',index=False)
