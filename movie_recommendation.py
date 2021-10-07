@@ -25,7 +25,7 @@ def weighted_rating(x, m=m, C=C):
 
 # Define a new feature 'score' and calculate its value with `weighted_rating()`
 q_movies['score'] = q_movies.apply(weighted_rating, axis=1)
-
+q_movies['score'] = q_movies['score'].round(decimals=2)
 
 count_vectorizer = CountVectorizer(stop_words="english")
 count_matrix = count_vectorizer.fit_transform(q_movies["soup"])
