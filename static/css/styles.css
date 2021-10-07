@@ -33,7 +33,7 @@ box-sizing: border-box;
   padding-left: 5px;
   padding-right: 5px;
   padding-top: 10px;
-  height: 150px; /* Should be removed. Only for demonstration */
+  height: 50px; /* Should be removed. Only for demonstration */
 }
 
 /* Clear floats after the columns */
@@ -115,7 +115,7 @@ label {
 }
 
 .search_categories{
-  font-size: 17px;
+  font-size: 16px;
   overflow: hidden;
   position: relative;
 }
@@ -140,8 +140,6 @@ input[type="radio"] {
 input[type="text"] {  
   display: inline-block;
   width: 250px;
-  background-color: rgb(243, 243, 243); /* Color */
-  border: none;
   color: rgb(78, 78, 78);
   text-align: left;
   text-decoration: none;

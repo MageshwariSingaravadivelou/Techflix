@@ -34,8 +34,10 @@ def get_movie_details():
 
 @app.route('/recommend_movie',methods=['GET']) 
 def recommend_movie():
-    quest=request.args.get('quest')
-    tables = movie_recommendation.get_recommendations(quest)
-    print(tables)
+    if request.method == 'GET':
+        quest=request.args.get('quest')
+        genre=request.args.get('genre')
+        tables = movie_recommendation.get_recommendations(quest, genre)
+        print(tables)
 
     return tables.to_json(orient='split',index=False)

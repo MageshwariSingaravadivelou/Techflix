@@ -38,7 +38,7 @@ q_movies = q_movies.reset_index()
 q_movies['title_'] = q_movies['title'].str.lower()
 indices = pd.Series(q_movies.index, index=q_movies["title_"]).drop_duplicates()
 
-def get_recommendations(title):
+def get_recommendations(title, genre):
     cosine_sim = cosine_sim2
     title_ = title.lower()
     idx = indices[title_]
@@ -49,19 +49,20 @@ def get_recommendations(title):
 
     movies_indices = [ind[0] for ind in similarity_scores]
 
+    movies_list = q_movies[q_movies['genres_'].str.contains(genre.lower())] 
+
     # remove the input movie name from the list
-    # Get names of indexes for which column Age has value 30
-    indexNames = q_movies[ q_movies['title_'] == title_ ].index
-    print(indexNames)
+    indexNames = movies_list[movies_list['title_'] == title_ ].index
+
     # Delete these row indexes from dataFrame
-    q_movies.drop(indexNames, inplace=True)
+    movies_list.drop(indexNames, inplace=True)
     # movies_list = q_movies[q_movies["title_"].str.contains(title_)==False]
 
-    movies = q_movies["title"].iloc[movies_indices]
-    release_date = q_movies['release_date'].iloc[movies_indices]
-    genres = q_movies['genres_'].iloc[movies_indices]
-    tag_line = q_movies['tagline'].iloc[movies_indices]
-    score = q_movies['score'].iloc[movies_indices]
+    movies = movies_list["title"].iloc[movies_indices]
+    release_date = movies_list['release_date'].iloc[movies_indices]
+    genres = movies_list['genres_'].iloc[movies_indices]
+    tag_line = movies_list['tagline'].iloc[movies_indices]
+    score = movies_list['score'].iloc[movies_indices]
 
     return_df = pd.DataFrame(columns=['Title','TagLine', 'Genres', 'Year', 'Score'])
     return_df['Title'] = movies

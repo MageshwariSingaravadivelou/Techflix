@@ -73,12 +73,12 @@
 
      <div class="row">
       <div class="column">
-        <div>
+        <form>
           <input type="radio" id="recommend" name="movie" value="recommend">
           <label for="recommend">Recommend Movies</label>
           <input type="radio" id="search" name="movie" value="search">
           <label for="search">Search Movie Details</label>
-        </div>
+        </form>
       </div>
 
       <div class="column">
@@ -86,8 +86,8 @@
           <div class="select">
             <form name="form1" id="form1" action='index.html' method="GET">
             <label>Genres: </label>
-            <select name="genres" id="genres">
-                <option value="" selected="selected">Any Genre</option>
+              <select name="genres" id="genres">
+                <option value="Any Genre" selected="selected">Any Genre</option>
                 <option value="Action">Action</option>
                 <option value="Adventure">Adventure</option>
                 <option value="Animation">Animation</option>
@@ -105,15 +105,20 @@
                 <option value="Thriller">Thriller</option>
                 <option value="Western">Western</option>
               </select>
-              </form>
-              </div>
-              </div>
-
-            <form>
-              <input id="searchMovie" type="text" placeholder="Movie Name..." name="searchmovie" disabled="disabled">
-              <button type="submit" name= "submit" id="submit-btn" onclick="CreateTable();">Search</button>
-              <button type="reset" name= "clear" id="clear-btn" onclick="ClearContent();">Clear</button>
             </form>
+          </div>
+        </div>
+              
+        <p id='selected_genre'> </p>
+              
+      </div>
+
+      <div class="column" style="align-items: center;">
+        <form style="padding-left: 15px;">
+          <input id="searchMovie" type="text" placeholder="Movie Name..." name="searchmovie" disabled="disabled" style="border-color: lightgray;">
+          <button type="submit" name= "submit" id="submit-btn" onclick="CreateTable();">Search</button>
+          <button type="reset" name= "clear" id="clear-btn" onclick="ClearContent();">Clear</button>
+        </form>
       </div>
     </div>
     </div>
@@ -125,6 +130,17 @@
 function ClearContent() {
   location.reload();
 }
+$(function () {
+  $("#genres").change(function(){
+      if($(this).val()=='Any Genre'){
+        document.getElementById("selected_genre").innerHTML = "** You haven't select any genres from dropdown list...";
+          $('#selected_genre').show();
+      }else{
+        document.getElementById("selected_genre").innerHTML = "** You have selected the " + $(this).val();
+          $('#selected_genre').show();
+      }
+  });
+});
 
 $(function () {
         $("#submit-btn").click(function () {
@@ -140,16 +156,19 @@ $(function () {
             if ($("#recommend").is(":checked")) {
               $("#searchMovie").removeAttr("disabled");
               $("#searchMovie").focus();
-                $(document).on('click','#submit-btn',function(e){
+              $(document).on('click','#submit-btn',function(e){
     e.preventDefault();
     var keyword=$("input[name='searchmovie']").val();
+    var selectedGenre = $("#genres").val();
+
     console.log(keyword)   
     {$.ajax({
       type: "GET",
       url: "https://cinebuzz.herokuapp.com/recommend_movie",
       dataType: 'json',
       data: {
-          quest: keyword
+          quest: keyword,
+          genre: selectedGenre
       },
       cache: false,
       success: function(response) {
