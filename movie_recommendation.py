@@ -50,13 +50,18 @@ def get_recommendations(title):
     movies_indices = [ind[0] for ind in similarity_scores]
 
     # remove the input movie name from the list
-    movies_list = q_movies[q_movies["title_"].str.contains(title_)==False]
+    # Get names of indexes for which column Age has value 30
+    indexNames = q_movies[ q_movies['title_'] == title_ ].index
+    print(indexNames)
+    # Delete these row indexes from dataFrame
+    q_movies.drop(indexNames, inplace=True)
+    # movies_list = q_movies[q_movies["title_"].str.contains(title_)==False]
 
-    movies = movies_list["title"].iloc[movies_indices]
-    release_date = movies_list['release_date'].iloc[movies_indices]
-    genres = movies_list['genres_'].iloc[movies_indices]
-    tag_line = movies_list['tagline'].iloc[movies_indices]
-    score = movies_list['score'].iloc[movies_indices]
+    movies = q_movies["title"].iloc[movies_indices]
+    release_date = q_movies['release_date'].iloc[movies_indices]
+    genres = q_movies['genres_'].iloc[movies_indices]
+    tag_line = q_movies['tagline'].iloc[movies_indices]
+    score = q_movies['score'].iloc[movies_indices]
 
     return_df = pd.DataFrame(columns=['Title','TagLine', 'Genres', 'Year', 'Score'])
     return_df['Title'] = movies
